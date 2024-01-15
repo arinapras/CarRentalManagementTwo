@@ -4,6 +4,7 @@ using CarRentalManagementTwo.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalManagementTwo.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240114183724_AddedNameToUser")]
+    partial class AddedNameToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,292 +94,6 @@ namespace CarRentalManagementTwo.Server.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateIn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateOut")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Colour", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Colours");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(8868),
-                            DateUpdated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(8892),
-                            Name = "Black",
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(8899),
-                            DateUpdated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(8901),
-                            Name = "Blue",
-                            UpdatedBy = "System"
-                        });
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DrivingLicense")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmailAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Make", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Makes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9447),
-                            DateUpdated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9450),
-                            Name = "BMW",
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9456),
-                            DateUpdated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9458),
-                            Name = "Toyota",
-                            UpdatedBy = "System"
-                        });
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Model", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Models");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9844),
-                            DateUpdated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9847),
-                            Name = "3 Series",
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9852),
-                            DateUpdated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9855),
-                            Name = "X5",
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9859),
-                            DateUpdated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9862),
-                            Name = "Prius",
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9866),
-                            DateUpdated = new DateTime(2024, 1, 15, 12, 32, 15, 740, DateTimeKind.Local).AddTicks(9869),
-                            Name = "Rav4",
-                            UpdatedBy = "System"
-                        });
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Vehicle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ColourId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LicensePlateNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MakeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ModelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ColourId");
-
-                    b.HasIndex("MakeId");
-
-                    b.HasIndex("ModelId");
-
-                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -657,52 +374,6 @@ namespace CarRentalManagementTwo.Server.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Booking", b =>
-                {
-                    b.HasOne("CarRentalManagementTwo.Shared.Domain.Customer", "Customer")
-                        .WithMany("Bookings")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CarRentalManagementTwo.Shared.Domain.Vehicle", "Vehicle")
-                        .WithMany("Bookings")
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Vehicle");
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Vehicle", b =>
-                {
-                    b.HasOne("CarRentalManagementTwo.Shared.Domain.Colour", "Colour")
-                        .WithMany()
-                        .HasForeignKey("ColourId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CarRentalManagementTwo.Shared.Domain.Make", "Make")
-                        .WithMany()
-                        .HasForeignKey("MakeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CarRentalManagementTwo.Shared.Domain.Model", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Colour");
-
-                    b.Navigation("Make");
-
-                    b.Navigation("Model");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -752,16 +423,6 @@ namespace CarRentalManagementTwo.Server.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Customer", b =>
-                {
-                    b.Navigation("Bookings");
-                });
-
-            modelBuilder.Entity("CarRentalManagementTwo.Shared.Domain.Vehicle", b =>
-                {
-                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }
